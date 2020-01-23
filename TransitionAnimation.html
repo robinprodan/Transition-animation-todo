@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="assets/styles/style.css">
+  <title>Document</title>
+<style>
+.foo{
+  background: rgb(178, 241, 109);
+  text-align: center;
+  width: 960px;
+  margin: 44px auto;
+  min-height: 222px;
+  padding: 22px;
+}
+button{
+     cursor: pointer;
+}
+.fade-enter-active, .fade-leave-active{
+/* transition: opacity 1s; */
+/* transition: margin-top 1s; */
+/* transition: transform 1s; */
+transition:  margin-left 1s;
+
+}
+/* fade is variable */
+.fade-enter{
+ /* opacity: 0; */
+ /* margin-top: -555px; */
+ /* transform: rotate(180deg); */
+
+ margin-left:-200px;
+
+
+}
+/* akshate o declare kra jai .fade-enter, .fade-leave-to */
+.fade-leave-to{
+ /* margin-top:555px; */
+
+ /* transform: rotate(180deg); */
+ margin-left:-200px;
+
+}
+
+</style>
+</head>
+
+<body>
+  <div id="root">
+    <!-- <button @click="show = !show">Toggle</button>
+    <transition name="fade">
+        <div class="foo" v-show="show">
+            <p>Hello world</p>
+          </div>
+    </transition> -->
+
+  
+    <h1>Skills</h1>
+    <hr>
+    <input type="text" v-model="newSkill">
+    <button v-on:click="addNewSkill()">Add</button> 
+  <ul>
+    <transition-group name="fade">
+        <li v-for="(skill,i) in skills" :key="i">
+            <p>{{skill}} 
+              <button v-on:click="removeSkill(i)">x</button>
+            </p>
+         
+          </li>
+    </transition-group>
+  </ul>
+
+  
+  </div>
+  <script src="vue.js"></script>
+  <script>
+   
+    // var app = new Vue({
+    //   el: "#root",
+    //   data: {
+    //     show:false,
+    //   },
+    // })
+
+    var app = new Vue({
+
+el:"#root",
+data:{
+  newSkill:"",
+  skills:["html","css","js","php"],
+ 
+},
+methods:{
+addNewSkill:function(){
+ this.skills.push(this.newSkill);
+ this.newSkill=""
+},
+removeSkill:function(i){
+  this.skills.splice(i,1)
+}
+}
+})
+  </script>
+</body>
+
+</html>
